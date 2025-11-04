@@ -1,0 +1,48 @@
+services:
+  nginx:
+    image: nginx
+    build: ./srcs/nginx
+    ports:
+      - "443:443"
+    depends_on:
+      - wordpress
+    networks:
+      - net_inc
+    volumes:
+      - /home/${LOGIN}/data/wordpress:/var/www/html:ro
+  
+  wordpress:
+    image: wordpress
+    build: ./srcs/wordpress
+    depends_on:
+      - mariadb
+    networks:
+      - net_inc
+    environment:
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_HOST=${DB_HOST}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - WP_ADMIN_USER=${WP_ADMIN_USER}
+      - WP_ADMIN_EMAIL=${WP_ADMIN_EMAIL}
+      - DOMAIN=${DOMAIN}
+    volumes:
+      - /home/${LOGIN}/data/wordpress:/var/www/html
+
+  mariadb:
+    image: mariadb
+    build: ./srcs/mariadb
+    networks:
+      - net_inc
+    environment:
+      - MYSQL_DATABASE=${DB_NAME}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASS}
+    volumes:
+      - /home/${LOGIN}/data/mysql:/var/lib/mysql
+
+networks:
+  net_inc:
+    driver: bridge
+    
