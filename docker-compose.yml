@@ -1,7 +1,7 @@
 services:
   nginx:
-    image: nginx
     build: ./srcs/nginx
+    image: nginx
     ports:
       - "443:443"
     depends_on:
@@ -10,10 +10,11 @@ services:
       - net_inc
     volumes:
       - /home/${LOGIN}/data/wordpress:/var/www/html:ro
+    restart: unless-stopped
   
   wordpress:
-    image: wordpress
     build: ./srcs/wordpress
+    image: wordpress
     depends_on:
       - mariadb
     networks:
@@ -28,19 +29,21 @@ services:
       - DOMAIN=${DOMAIN}
     volumes:
       - /home/${LOGIN}/data/wordpress:/var/www/html
+    restart: unless-stopped
 
   mariadb:
-    image: mariadb
     build: ./srcs/mariadb
+    image: mariadb
     networks:
       - net_inc
     environment:
       - MYSQL_DATABASE=${DB_NAME}
       - MYSQL_USER=${DB_USER}
       - MYSQL_PASSWORD=${DB_PASSWORD}
-      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASS}
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
     volumes:
       - /home/${LOGIN}/data/mysql:/var/lib/mysql
+    restart: unless-stopped
 
 networks:
   net_inc:
