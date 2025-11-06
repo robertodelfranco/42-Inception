@@ -7,9 +7,9 @@ RUN apt-get update && apt-get install -y \
 
 RUN mkdir -p /var/www/html && chown -R www-data:www-data /var/www/html
 
-COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+COPY tools/entrypoint.sh /usr/local/bin/entrypoint.sh
 
-COPY listen.conf /etc/php/8.2/fpm/pool.d/www.conf
+COPY conf/listen.conf /etc/php/8.2/fpm/pool.d/www.conf
 
 RUN chmod +x /usr/local/bin/entrypoint.sh
 

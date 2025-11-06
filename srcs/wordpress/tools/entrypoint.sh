@@ -30,7 +30,7 @@ if [ ! -f "${WP_DIR}/wp-config.php" ]; then
     --admin_email="${WP_ADMIN_EMAIL}" --skip-email --allow-root
 
   # criar um usuário adicional
-  ${WP_CLI} user create user01 user01@${DOMAIN} --user_pass="userpass123" --role=editor --allow-root
+  ${WP_CLI} user create "${USER}" "${USER_EMAIL}" --user_pass="${USER_PASSWORD}" --role=editor --allow-root
 fi
 
 # final: exec php-fpm em foreground (PID 1)

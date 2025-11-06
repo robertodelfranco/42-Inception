@@ -5,9 +5,9 @@ RUN apt-get update && apt-get install -y mariadb-server mariadb-client \
 
 RUN mkdir -p /run/mysqld && chown -R mysql:mysql /run/mysqld /var/lib/mysql
 
-COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+COPY tools/entrypoint.sh /usr/local/bin/entrypoint.sh
 
-COPY address.conf /etc/mysql/mariadb.conf.d/50-server.cnf
+COPY conf/address.conf /etc/mysql/mariadb.conf.d/50-server.cnf
 
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
