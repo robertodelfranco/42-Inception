@@ -1,7 +1,7 @@
 services:
   nginx:
-    build: ./srcs/nginx
     image: nginx
+    build: ./srcs/nginx
     ports:
       - "443:443"
     depends_on:
@@ -13,8 +13,8 @@ services:
     restart: unless-stopped
   
   wordpress:
-    build: ./srcs/wordpress
     image: wordpress
+    build: ./srcs/wordpress
     depends_on:
       - mariadb
     networks:
@@ -32,8 +32,8 @@ services:
     restart: unless-stopped
 
   mariadb:
-    build: ./srcs/mariadb
     image: mariadb
+    build: ./srcs/mariadb
     networks:
       - net_inc
     environment:
