@@ -1,7 +1,7 @@
 
 COMPOSE = docker-compose
 
-LOGIN = cadete
+MLOGIN = cadete
 
 build:
 	$(COMPOSE) build
@@ -14,7 +14,7 @@ down:
 
 clean:
 	$(COMPOSE) down -v --rmi local --remove-orphans
-	sudo rm -rf /home/$(LOGIN)/data/
+	sudo rm -rf /home/$(MLOGIN)/data/
 
 logs:
 	$(COMPOSE) logs -f
