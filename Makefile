@@ -13,7 +13,7 @@ down:
 	$(COMPOSE) down
 
 clean:
-	$(COMPOSE) down -v --rmi local --remove-orphans
+	$(COMPOSE) down --rmi local
 	sudo rm -rf /home/$(MLOGIN)/data/
 
 logs:
