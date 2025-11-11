@@ -1,7 +1,7 @@
 
 COMPOSE = docker-compose
 
-MLOGIN = cadete
+MLOGIN = rdel-fra
 
 build:
 	$(COMPOSE) build

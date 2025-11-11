@@ -27,6 +27,9 @@ services:
       - WP_ADMIN_USER=${WP_ADMIN_USER}
       - WP_ADMIN_EMAIL=${WP_ADMIN_EMAIL}
       - WP_ADMIN_PASSWORD=${WP_ADMIN_PASSWORD}
+      - EXTRA_USER=${EXTRA_USER}
+      - EXTRA_USER_EMAIL=${EXTRA_USER_EMAIL}
+      - EXTRA_USER_PASSWORD=${EXTRA_USER_PASSWORD}
       - DOMAIN=${DOMAIN}
     volumes:
       - /home/${LOGIN}/data/wordpress:/var/www/html
